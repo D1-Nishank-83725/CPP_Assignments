@@ -11,6 +11,7 @@ private:
 public:
     Date()
     {
+        // Default Date
         day = 1;
         month = 1;
         year = 2000;
@@ -101,6 +102,7 @@ private:
     int id;
     double salary;
     string department;
+    // Main Concept to See
     Date joiningDate;
 
 public:
@@ -150,7 +152,7 @@ public:
         this->department = department;
     }
 
-    // Most important part of Association to understand the concept
+    // Main Concept to see
 
     void getJoiningDate()
     {
@@ -230,7 +232,7 @@ public:
         this->address = address;
     }
 
-    // Most important part of Association to understand the concept
+    // Main concept to see
 
     void getBirthDate()
     {
