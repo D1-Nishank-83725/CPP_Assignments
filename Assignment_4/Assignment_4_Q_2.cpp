@@ -77,16 +77,18 @@ public:
     }
 };
 
-int printSpecificRollNoStudentDetails(Student *arr[], int rollno, int size)
+void printSpecificRollNoStudentDetails(Student *arr[], int rollno, int size)
 {
     for (int i = 0; i < size; i++)
     {
         if (rollno == arr[i]->getRollno())
         {
-            return rollno;
+
+            cout << "\nRoll Number found at Position: \"" << i + 1 << "\"";
+            return;
         }
     }
-    cout << "Student not Present! " << endl;
+    cout << "\nStudent not Present! " << endl;
 }
 
 void sortUsingRollNo(Student *arr[], int size)
@@ -169,10 +171,8 @@ int main()
         case 4:
             cout << "Search Student using Roll Number: ";
             cin >> rollno;
-            cout << "Roll Number found at Position: ";
 
-            cout << printSpecificRollNoStudentDetails(arr, rollno, size);
-
+            printSpecificRollNoStudentDetails(arr, rollno, size);
             break;
 
         default:
