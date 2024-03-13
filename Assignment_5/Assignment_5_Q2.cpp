@@ -156,6 +156,7 @@ int menu()
 int main()
 {
     int choice;
+    int finalPrice;
     int count = 0;
 
     Product *productarr[3];
@@ -236,14 +237,13 @@ int main()
             break;
 
         case 6:
-
-            int totalPrice = 0;
+            finalPrice = 0;
             cout << "**************************" << endl;
             for (int i = 0; i < count; i++)
             {
-                totalPrice += productarr[i]->getPrice();
+                finalPrice += productarr[i]->getPrice();
             }
-            cout << "Final Disounted Price of All Products: " << totalPrice;
+            cout << "Final Disounted Price of All Products: " << finalPrice << endl;
             cout << "**************************";
             break;
 
