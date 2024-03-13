@@ -254,6 +254,10 @@ int main()
         }
         }
     }
+    for (int i = 0; i < count; i++)
+    {
+        delete productarr[i];
+    }
 
     return 0;
 }
