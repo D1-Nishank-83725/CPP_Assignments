@@ -51,11 +51,10 @@ public:
 
     virtual void displayData()
     {
-        cout << "ID              : " << id << endl;
-        cout << "Salary          : " << salary << endl;
+        cout << "ID               : " << id << endl;
+        cout << "Salary           : " << salary << endl;
     }
 
-    // Important Step: Because as we try to delete the manager or salesperson class
     virtual ~Employee()
     {
     }
@@ -78,7 +77,7 @@ public:
 
     void displayBonus()
     {
-        cout << "Bonus    : " << bonus << endl;
+        cout << "Bonus        : " << bonus << endl;
     }
 
     void acceptBonus()
@@ -135,12 +134,14 @@ public:
     void displayData()
     {
         Employee::displayData();
-        displayComm();
+        cout << "Commission             : " << comm << endl;
+        ;
     }
 };
 
-class Salesmanager : public Manager, Salesman
+class Salesmanager : public Manager, public Salesman
 {
+protected:
 public:
     Salesmanager() : Salesmanager(0, 0.0f, 0.0f, 0.0) {}
 
@@ -154,9 +155,8 @@ public:
     void acceptData()
     {
         Employee::acceptData();
-        Manager::acceptBonus();
-        Salesman::acceptComm();
-
+        acceptBonus();
+        acceptComm();
         // Salesman::acceptData();
         // Manager::acceptData();
     }
@@ -164,18 +164,43 @@ public:
     void displayData()
     {
         Employee::displayData();
-        cout << "Bonus        : " << bonus << endl;
-        cout << "Commission   : " << comm << endl;
+        displayBonus();
+        displayComm();
         // Salesman::displayData();
         // Manager::displayData();
     }
 };
+
+int menu()
+{
+    int choice;
+    cout << "\n\n0: Exit                   : " << endl;
+    cout << "1: Accept Employee        : " << endl;
+    cout << "2: Display Employee       : " << endl;
+    cout << "3: Accept Manager         : " << endl;
+    cout << "4: Display Manager        : " << endl;
+    cout << "5: Accept Salesman        : " << endl;
+    cout << "6: Display Salesman       : " << endl;
+    cout << "7: Accept Salesmanager    : " << endl;
+    cout << "8: Display Salesmanager   : " << endl;
+    cout << "9: Count Of All Employees : " << endl;
+    cout << "10: Display All Data      : \n\n"
+         << endl;
+
+    cin >> choice;
+    return choice;
+}
 
 int main()
 {
     int choice;
     int size;
     int count = 0;
+
+    int noOfEmployees = 0;
+    int noOfManagers = 0;
+    int noOfSalesman = 0;
+    int noOfSalesmanagers = 0;
     // Employee e1;
     // Manager m1;
     // Salesman sm1;
@@ -189,34 +214,16 @@ int main()
 
     Employee *employees[size];
 
-    do
+    while ((choice = menu()) != 0)
     {
-
-        cout << "\n\n0: Exit                 : " << endl;
-        cout << "1: Accept Employee      : " << endl;
-        cout << "2: Display Employee     : " << endl;
-        cout << "3: Accept Manager       : " << endl;
-        cout << "4: Display Manager      : " << endl;
-        cout << "5: Accept Salesman      : " << endl;
-        cout << "6: Display Salesman     : " << endl;
-        cout << "7: Accept Salesmanager  : " << endl;
-        cout << "8: Display Salesmanager : " << endl;
-        cout << "9: Display All Data     : \n\n"
-             << endl;
-
-        cin >> choice;
-
         switch (choice)
         {
-        case 0:
-            cout << "Thank you for using the Program " << endl;
-            break;
-
         case 1:
             if (count < size)
             {
                 employees[count] = new Employee();
                 employees[count]->acceptData();
+                noOfEmployees++;
                 count++;
             }
             else
@@ -241,6 +248,7 @@ int main()
             {
                 employees[count] = new Manager();
                 employees[count]->acceptData();
+                noOfManagers++;
                 count++;
             }
             else
@@ -265,6 +273,7 @@ int main()
             {
                 employees[count] = new Salesman();
                 employees[count]->acceptData();
+                noOfSalesman++;
                 count++;
             }
             else
@@ -290,6 +299,7 @@ int main()
             {
                 employees[count] = new Salesmanager();
                 employees[count]->acceptData();
+                noOfSalesmanagers++;
                 count++;
             }
             else
@@ -310,6 +320,15 @@ int main()
             break;
 
         case 9:
+        {
+            cout << "Employees     : " << noOfEmployees << endl;
+            cout << "Managers      : " << noOfManagers << endl;
+            cout << "Salesman      : " << noOfSalesman << endl;
+            cout << "Sales Manager : " << noOfSalesmanagers << endl;
+        }
+        break;
+
+        case 10:
             for (int i = 0; i < count; i++)
             {
                 employees[i]->displayData();
@@ -320,13 +339,15 @@ int main()
             cout << "Invalid Choice!" << endl;
             break;
         }
-    } while (choice != 0);
+    }
 
     for (int i = 0; i < count; i++)
     {
-        // free(employees[i]);
-        delete employees[i];
+        delete[] employees[i];
+        employees[i] = NULL;
     }
+
+    cout << "Thank you for using the program" << endl;
 
     return 0;
 }
