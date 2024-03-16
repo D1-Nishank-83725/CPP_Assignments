@@ -45,7 +45,7 @@ public:
         cout << "Price  : " << price << endl;
     }
 
-    virtual int getPrice()
+    int getPrice()
     {
         return price;
     }

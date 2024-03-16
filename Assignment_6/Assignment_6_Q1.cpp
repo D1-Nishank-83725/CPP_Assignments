@@ -5,6 +5,28 @@ using namespace std;
 // Employee Pointer : Class rest wali
 // Can you have those functionalites using the
 
+class EmployeeException
+{
+
+private:
+    string message;
+
+public:
+    EmployeeException()
+    {
+        cout << "Something went wrong " << endl;
+    }
+    EmployeeException(string message)
+    {
+        this->message = message;
+    }
+
+    void printErrorMessage()
+    {
+        cout << message << endl;
+    }
+};
+
 class Employee
 {
 protected:
@@ -47,6 +69,10 @@ public:
 
         cout << "Enter Salary: ";
         cin >> salary;
+        if (salary < 0)
+        {
+            throw EmployeeException("Salary cannot be less than 0");
+        }
     }
 
     virtual void displayData()
@@ -213,11 +239,19 @@ int main()
             break;
 
         case 1:
+
             if (count < size)
             {
                 employees[count] = new Employee();
-                employees[count]->acceptData();
-                count++;
+                try
+                {
+                    employees[count]->acceptData();
+                    count++;
+                }
+                catch (EmployeeException &error)
+                {
+                    error.printErrorMessage();
+                }
             }
             else
             {

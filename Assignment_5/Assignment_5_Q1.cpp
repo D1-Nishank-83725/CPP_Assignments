@@ -94,26 +94,27 @@ private:
     // Making an object of Date directly by using Inheritance, instead of implementing the Date functionalities again
     Date joiningDate;
     // Making an object of Person directly by using Inheritance, instead of implementing the Person functionalities again
-    Person p;
+
 
 public:
-    Employee() : Employee(1, 1000.0, "Sunbeam", joiningDate, p) {}
+    Employee() : Employee(1, 1000.0, "Sunbeam", joiningDate) {}
 
-    Employee(int empId, double salary, string department, Date joiningDate, Person p)
+    Employee(int empId, double salary, string department, Date joiningDate)
     {
         this->empId = empId;
         this->salary = salary;
         this->department = department;
         this->joiningDate = joiningDate;
-        this->p = p;
+        
     }
 
     void acceptEmployee()
     {
 
         // Here, Inheritance was used
-        p.acceptPerson();
+        // p.acceptPerson();
 
+        Person::acceptPerson();
         cout << "\nEnter the Employee ID: ";
         cin >> empId;
         this->empId = empId;
@@ -135,7 +136,8 @@ public:
     void displayEmployee()
     {
         // Here, Inheritance was used
-        p.displayPerson();
+        // p.displayPerson();
+        Person::displayPerson();
         cout << "\nEmployee ID: " << empId << endl;
         cout << "Department: " << department << endl;
         cout << "Salary: " << salary << endl;

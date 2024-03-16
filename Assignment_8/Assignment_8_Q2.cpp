@@ -135,7 +135,7 @@ public:
 int main()
 {
 
-    int choice, value, count = 0;
+    int choice, value, count = 0, id;
     Account *accarr[5];
 
     do
@@ -165,16 +165,17 @@ int main()
             break;
 
         case 2:
+            cout << "\nEnter Account ID: ";
+            cin >> id;
+
             for (int i = 0; i < count; i++)
             {
-                int id;
-                cout << "Enter Account ID: ";
-                cin >> id;
                 cout << endl;
                 if (accarr[i]->getId() == id)
                 {
                     cout << "Account Details: " << endl;
                     accarr[i]->displayAccountDetails();
+                    break;
                 }
                 else
                 {
@@ -185,11 +186,11 @@ int main()
             break;
 
         case 3:
+            cout << "\nEnter Account ID: ";
+            cin >> id;
+
             for (int i = 0; i < count; i++)
             {
-                int id;
-                cout << "Enter Account ID: ";
-                cin >> id;
                 cout << endl;
                 if (accarr[i]->getId() == id)
                 {
@@ -217,11 +218,11 @@ int main()
             break;
 
         case 4:
+            cout << "Enter Account ID: ";
+            cin >> id;
+
             for (int i = 0; i < count; i++)
             {
-                int id;
-                cout << "Enter Account ID: ";
-                cin >> id;
                 if (accarr[i]->getId() == id)
                 {
                     try
