@@ -107,20 +107,21 @@ public:
     void addCourse()
     {
 
-        int noOfCourses;
-        cout << "Enter the Number of Courses you want to Enroll For: " << endl;
-        cin >> noOfCourses;
+        // int noOfCourses;
+        // cout << "Enter the Number of Courses you want to Enroll For: " << endl;
+        // cin >> noOfCourses;
 
-        for (int i = 0; i < noOfCourses; i++)
-        {
-            Course c;
-            c.acceptData();
-            courseList.push_back(c);
-            // Course *cptr;
-            // cptr = new Course();
-            // cptr->acceptData();
-            // courseList.push_back(*cptr);
-        }
+        // for (int i = 0; i < noOfCourses; i++)
+        // {
+
+        Course c;
+        c.acceptData();
+        courseList.push_back(c);
+        // Course *cptr;
+        // cptr = new Course();
+        // cptr->acceptData();
+        // courseList.push_back(*cptr);
+        // }
     }
 };
 
@@ -176,6 +177,10 @@ int main()
                 if (studentList[i].getRollno() == rollNo)
                 {
                     studentList[i].addCourse();
+                }
+                else
+                {
+                    cout << "Invalid Choice!" << endl;
                 }
             }
 
